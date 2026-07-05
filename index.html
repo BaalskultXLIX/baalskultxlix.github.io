@@ -1,36 +1,65 @@
 ## Update v1.2
 <html>
-  <head>
+ <head>
     <title>
       My first github.io website
     </title>
     <link href="./css.css" type="text/css" rel="stylesheet">
-  </head>
-  <body>
+   </head>
+ <body>
     <h1>
-    Info List (Arch Linux)
+     Info List (Arch Linux)
     </h1>
-  <h2>
-  QEMU 
-  </h2>
-  <img  src="/home/user/Downloads/Qemu_logo.svg" alt"img"  width="150" height="150">
- <p>
-  Ich brauche um QEMU zu starten qemu-full, passt für internet und edk2-ovmf für UEFI . Ich starte QEMU über mein USB stick ---->( ... /dev/sda ... )<----
- </p>
- <p>
-   Arch Linux: sudo pacman -S qemu-full passt edk2-ovmf
- </p>
- <p>
- Ich muss zuerst ein imge file erstellen mit dem command "qemu-img create -f raw image_file 4G"
- </p>
-  <p>
-   Ich muss als zweites passt starten um internet zu habe mit dem command "passt -f" (Mann muss es gleichzeitig mit QEMU starten.).
- </p>
-<p> 
-  Hier sind meine Arguments "sudo qemu-system-x86_64 -enable-kvm -machine q35 -device intel-iommu -cpu host -cdrom /dev/sda -boot   order=d -drive if=pflash,file=linux,format=raw,file=/usr/share/edk2/x64/OVMF.4m.fd -m 4G -device virtio-net-pci,netdev=s \
-         -netdev stream,id=s,server=off,addr.type=unix,addr.path=/tmp/passt_1.socket"
-</p>
-</body>
+   <h2>
+     QEMU 
+   </h2>
+   <img  src="./Qemu_logo.svg" alt"img"  width="150" height="150">
+   <p>
+     Ich brauche um QEMU zu starten qemu-full, passt für internet und edk2-ovmf für UEFI . Ich starte QEMU über mein USB stick ---->( ... /dev/sda ... )<----
+   </p>
+   <p>
+     Arch Linux: sudo pacman -S qemu-full passt edk2-ovmf
+   </p>
+   <p>
+     Ich muss zuerst ein imge file erstellen mit dem command "qemu-img create -f raw image_file 4G"
+   </p>
+   <p>
+     Ich muss als zweites passt starten um internet zu habe mit dem command "passt -f" (Mann muss es gleichzeitig mit QEMU starten.).
+   </p>
+   <p> 
+          Hier sind meine Arguments "sudo qemu-system-x86_64 -enable-kvm -machine q35 -device intel-iommu -cpu host -cdrom /dev/sda -boot   order=d -drive if=pflash,file=linux,format=raw,file=/usr/share/edk2/x64/OVMF.4m.fd -m 4G -device virtio-net-pci,netdev=s \
+              -netdev stream,id=s,server=off,addr.type=unix,addr.path=/tmp/passt_1.socket"
+   </p>
+   <h2>
+     Arch Linux install
+   </h2>
+    <img  src="./archlinux-logo-dark-scalable.svg" alt"img"  width="450" height="150">
+   <p>
+     loadkeys de-latin1   
+   </p>
+   <p>
+     fdisk -l
+   </p>
+   <p>
+     fdisk /dev/sda
+   </p>
+   <p>
+     mkfs.vfat -F 32 /dev/sda1
+   </p>         
+   <p>
+     mkswap /dev/sda2 
+   </p>
+   <p>
+     mkswap /dev/sda3 
+   </p>
+   <p>
+     swapon /dev/sda2 
+   </p>    
+   <p>
+     mkfs.btrfs /dev/sda3 
+   </p>  
+   <p>
+     mount /dev/sda
+   </p>
+  </body>
 </html>
-
-
