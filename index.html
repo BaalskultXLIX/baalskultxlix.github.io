@@ -1,4 +1,4 @@
-v1.2
+## Update v1.2
 <html>
   <head>
     <title>
@@ -10,11 +10,12 @@ v1.2
     <h1>
     Info List (Arch Linux)
     </h1>
-     <img  src="" alt"img" style=" block; auto;"  width="" height="">
-  </body>
-  <h3>
-  QEMU
-  </h3>
+     <img  src="" alt"img" style="display: block; margin: auto;"  width="" height="">
+  
+  <h2>
+  QEMU 
+  </h2>
+  <img  src="/home/user/Downloads/Qemu_logo.svg" alt"img"  width="150" height="150">
  <p>
   Ich brauche um QEMU zu starten qemu-full und passt für internet. Ich starte QEMU über mein USB stick ---->( ... /dev/sda ... )<----
  </p>
@@ -22,11 +23,14 @@ v1.2
    Arch Linux: sudo pacman -S qemu-full passt
  </p>
  <p>
- Ich muss zuerst ein img
+ Ich muss zuerst ein imge file erstellen mit dem command "qemu-img create -f raw image_file 4G"
  </p>
   <p>
-   Ich muss zuerst passt starten um internet zu habe mit dem command "passt -f"
+   Ich muss als zweites passt starten um internet zu habe mit dem command "passt -f" (Mann muss es gleichzeitig mit QEMU starten.).
  </p>
-
- arguments
+<p> 
+  Hier sind meine Arguments "sudo qemu-system-x86_64 -enable-kvm -machine q35 -device intel-iommu -cpu host -cdrom /dev/sda -boot   order=d -drive if=pflash,file=linux,format=raw,file=/usr/share/edk2/x64/OVMF.4m.fd -m 4G -device virtio-net-pci,netdev=s \
+         -netdev stream,id=s,server=off,addr.type=unix,addr.path=/tmp/passt_1.socket"
+</p>
+</body>
 </html>
