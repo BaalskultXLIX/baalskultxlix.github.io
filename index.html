@@ -1,14 +1,95 @@
 <html>
-  <head>
+  <div>
+   <head>
     <title>
-      My first github.io website
+      My first github.io website (I have no experience in html and css)
     </title>
     <link href="./css.css" type="text/css" rel="stylesheet">
-  </head> 
-  <body>
-    <h1> 
-      My first github.io website v1.1  (Big update is coming v1.2)
+   </head>
+ <body lang="de">
+    <h1>
+     Info List (Arch Linux)(I have no experience in html and css)
     </h1>
-     <img  src="./2465994.jpg" alt"img" style="display: block; margin: auto;"  width="1024" height="768">
+   <h2>
+     QEMU 
+   </h2>
+   <img  src="./Qemu_logo.svg" alt"img"  width="150" height="150">
+   <p>
+     Ich brauche um QEMU zu starten qemu-full, passt für internet und edk2-ovmf für UEFI . Ich starte QEMU über mein USB stick ----> ( ... /dev/sda ... ) <----
+   </p>
+   <p>
+     Arch Linux: sudo pacman -S qemu-full passt edk2-ovmf
+   </p>
+   <p>
+     Ich muss zuerst ein imge file erstellen mit dem command "qemu-img create -f raw image_file 4G"
+   </p>
+   <p>
+     Ich muss als zweites passt starten um internet zu habe mit dem command "passt -f" (Mann muss es gleichzeitig mit QEMU starten.).
+   </p>
+   <p> 
+          Hier sind meine Arguments "sudo qemu-system-x86_64 -enable-kvm -machine q35 -device intel-iommu -cpu host -cdrom /dev/sda -boot   order=d -drive if=pflash,file=linux,format=raw,file=/usr/share/edk2/x64/OVMF.4m.fd -m 4G -device virtio-net-pci,netdev=s \
+              -netdev stream,id=s,server=off,addr.type=unix,addr.path=/tmp/passt_1.socket"
+   </p>
+   <h2>
+     Arch Linux install
+   </h2 style="background-color:DodgerBlue;">
+    <img  src="/home/user/website/archlinux-logo-dark-scalable.svg" alt"img"  width="450" height="150">
+   <p></p>
+    <a rel="nofollow" class="external text" href="https://wiki.archlinux.org/title/Installation_guide">Infos</a>
+    <p>
+     loadkeys de-latin1   
+   </p>
+   <p>
+     fdisk -l
+   </p>
+   <p>
+     fdisk /dev/sda
+   </p>
+   <p>
+     mkfs.vfat -F 32 /dev/sda1
+   </p>         
+   <p>
+     mkswap /dev/sda2 
+   </p>
+   <p>
+     mkswap /dev/sda3 
+   </p>
+   <p>
+     swapon /dev/sda2 
+   </p>    
+   <p>
+     mkfs.btrfs /dev/sda3 
+   </p>  
+   <p>
+     mount /dev/sda3 /mnt
+   </p>
+   <p>
+     mount --mkdir /dev/sda1 /mnt/boot
+   </p>
+   <p>
+    pacstrap -K /mnt base linux linux-firmware
+   </p>
+   <p>
+    genfstab -U /mnt >> /mnt/etc/fstab
+   </p>
+   <p>
+    arch-chroot /mnt
+   </p>
+   <p>
+     pacman -Sy fish nano sudo networkmanager linux linux-firmware plasma plasma-login-manager sddm dolphin ark 
+   </p>
+   <p>
+    
+  </p>
+   <p>
+    echo ""
+  </p>
+   <p>
+    echo ""
+  </p>
+   <p>
+     echo ""
+   </p>
   </body>
+ </div>
 </html>
