@@ -1,21 +1,21 @@
-## Update v1.2
 <html>
- <head>
+  <div>
+   <head>
     <title>
-      My first github.io website
+      My first github.io website (I have no experience in html and css)
     </title>
-    <link href="./css.css" type="text/css" rel="stylesheet">
+    <link href="/home/user/website/css.css" type="text/css" rel="stylesheet">
    </head>
- <body>
+ <body lang="de">
     <h1>
-     Info List (Arch Linux)
+     Info List (Arch Linux)(I have no experience in html and css)
     </h1>
    <h2>
      QEMU 
    </h2>
-   <img  src="./Qemu_logo.svg" alt"img"  width="150" height="150">
+   <img  src="/home/user/website/Qemu_logo.svg" alt"img"  width="150" height="150">
    <p>
-     Ich brauche um QEMU zu starten qemu-full, passt für internet und edk2-ovmf für UEFI . Ich starte QEMU über mein USB stick ---->( ... /dev/sda ... )<----
+     Ich brauche um QEMU zu starten qemu-full, passt für internet und edk2-ovmf für UEFI . Ich starte QEMU über mein USB stick ----> ( ... /dev/sda ... ) <----
    </p>
    <p>
      Arch Linux: sudo pacman -S qemu-full passt edk2-ovmf
@@ -32,9 +32,11 @@
    </p>
    <h2>
      Arch Linux install
-   </h2>
-    <img  src="./archlinux-logo-dark-scalable.svg" alt"img"  width="450" height="150">
-   <p>
+   </h2 style="background-color:DodgerBlue;">
+    <img  src="/home/user/website/archlinux-logo-dark-scalable.svg" alt"img"  width="450" height="150">
+   <p></p>
+    <a rel="nofollow" class="external text" href="https://">Infos</a>
+    <p>
      loadkeys de-latin1   
    </p>
    <p>
@@ -59,7 +61,35 @@
      mkfs.btrfs /dev/sda3 
    </p>  
    <p>
-     mount /dev/sda
+     mount /dev/sda3 /mnt
+   </p>
+   <p>
+     mount --mkdir /dev/sda1 /mnt/boot
+   </p>
+   <p>
+    pacstrap -K /mnt base linux linux-firmware
+   </p>
+   <p>
+    genfstab -U /mnt >> /mnt/etc/fstab
+   </p>
+   <p>
+    arch-chroot /mnt
+   </p>
+   <p>
+     pacman -Sy fish nano sudo networkmanager linux linux-firmware plasma plasma-login-manager sddm dolphin ark 
+   </p>
+   <p>
+    
+  </p>
+   <p>
+    echo ""
+  </p>
+   <p>
+    echo ""
+  </p>
+   <p>
+     echo ""
    </p>
   </body>
+ </div>
 </html>
