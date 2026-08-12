@@ -1,14 +1,114 @@
-<html>
+<!doctype html>
+<html lang="de">
   <head>
-    <title>
-      My first github.io website
-    </title>
-    <link href="./css.css" type="text/css" rel="stylesheet">
-  </head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My first github.io website</title>
+    <link href="./css.css" rel="stylesheet" type="text/css">
+    <!--
+      Entwickler-Kommentar:
+      Dieses HTML-Dokument enthält kurze Anleitungen zu QEMU und einer Arch Linux Installation.
+      Sichtbare Erklärungen (für Leser) stehen als Absätze vor den Codeblöcken.
+      Unsichtbare Hinweise für Entwickler sind als HTML-Kommentare (<!-- ... -->) hinterlegt.
+    -->
+  </head>
   <body>
-    <h1> 
-      My first github.io website.
-    </h1>
-     <img  src="./2465994.jpg" alt"img" style="display: block; margin: auto;"  width="1024" height="768">
+    <header>
+      <h1>Info-Liste — Arch Linux</h1>
+      <p><em>Kurz: Sammlung von Befehlen und Beispielen. Passe Pfade und Geräte an deine Hardware an.</em></p>
+    </header>
+
+    <!-- SECTION: QEMU -->
+    <section>
+      <h2>QEMU</h2>
+      <!-- Sichtbare Erklärung für Leser -->
+      <p><strong>Wozu ist das?</strong> QEMU ist ein Emulator/Virtualisierer, mit dem du ganze Rechner virtualisieren kannst. Hier werden typische Schritte beschrieben, um VMs mit UEFI-Unterstützung zu starten.</p>
+
+      <!-- Erklärung, was der Installationsbefehl macht -->
+      <p><strong>Installation (Arch Linux) — Erklärung:</strong> Der Befehl installiert das vollständige QEMU-Paket und die UEFI-Firmware (edk2-ovmf), damit du UEFI-VMs starten kannst.</p>
+      <pre><code>sudo pacman -S qemu-full edk2-ovmf</code></pre>
+
+      <!-- Erklärung für qemu-img -->
+      <p><strong>Image erstellen — Erklärung:</strong> Mit <code>qemu-img create</code> legst du eine virtuelle Festplattendatei an. Das Beispiel erzeugt ein 4 GiB großes RAW-Image.</p>
+      <pre><code>qemu-img create -f raw image_file 4G</code></pre>
+
+      <!-- Erklärung des Startkommandos -->
+      <p><strong>Startkommando — Erklärung:</strong> Das folgende Beispiel startet eine x86_64-VM mit KVM-Beschleunigung, verwendet eine Q35-Maschine und bindet u.a. ein CD-ROM-Gerät. Passe Pfade wie <code>/dev/sda</code> oder Dateinamen an dein System an.</p>
+      <pre><code>sudo qemu-system-x86_64 -enable-kvm -machine q35 -device intel-iommu -cpu host \
+  -cdrom /dev/sda -boot order=d \
+  -drive if=pflash,file=linux,format=raw \
+  -netdev stream,id=s,server=off,addr.type=unix,addr.path=/tmp/passt_1.socket
+</code></pre>
+
+      <!-- Unsichtbarer Entwicklerkommentar: netdev stream passt zu 'passt' Tool -->
+      <!-- Entwickler-Kommentar: Der netdev stream wird hier nur als Beispiel gezeigt, 'passt' ist ein separates Tool für Netzwerk-Forwarding. -->
+    </section>
+
+    <!-- SECTION: Arch Linux Installation -->
+    <section>
+      <h2>Arch Linux Installation</h2>
+      <p><strong>Wozu ist das?</strong> Schritt-für-Schritt-Befehle, um Arch Linux auf einem Laufwerk zu installieren. Diese Liste fasst typische Kommandos zusammen; nutze stets die offizielle Installationsanleitung des Arch Wiki als Referenz.</p>
+
+      <p>Offizielle Anleitung: <a href="https://wiki.archlinux.org/title/Installation_guide" target="_blank" rel="nofollow noopener">Arch Wiki — Installation guide</a></p>
+
+      <!-- Vor jedem Befehl eine kurze Erklärung -->
+      <pre><code># Tastaturbelegung setzen (wichtig für Eingaben im Installer)
+loadkeys de-latin1
+
+# Anzeige aller Laufwerke (prüfe, welches Gerät /dev/sda ist)
+fdisk -l
+
+# Partitionierung (interaktiv mit fdisk)
+fdisk /dev/sda
+
+# FAT32 für EFI-Partition erstellen (EFI benötigt meistens FAT32)
+mkfs.vfat -F 32 /dev/sda1
+
+# Swap-Partition anlegen (Beispiel)
+mkswap /dev/sda2
+
+# Root-Partition als btrfs formatieren (Beispiel)
+mkfs.btrfs /dev/sda3
+
+# Swap aktivieren
+swapon /dev/sda2
+
+# Root partition einhängen
+mount /dev/sda3 /mnt
+
+# EFI-Partition erstellen und mounten (erforderlich für UEFI)
+mount --mkdir /dev/sda1 /mnt/boot
+
+# Basis-System installieren
+pacstrap -K /mnt base linux linux-firmware
+
+# fstab generieren
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# In die neue Installation wechseln (chroot)
+arch-chroot /mnt
+
+# Einige zusätzliche Pakete installieren (z. B. Desktop, SDDM, Netzwerk)
+pacman -Sy fish nano sudo networkmanager plasma sddm dolphin ark
+</code></pre>
+
+      <!-- Kurze Erklärungen zu einigen ausgewählten Paketen -->
+      <p><strong>Was machen die Pakete?</strong></p>
+      <ul>
+        <li><code>fish</code>: Eine alternative Shell (Benutzerfreundlichere Shell).</li>
+        <li><code>networkmanager</code>: Netzwerkverwaltung (für einfache WLAN/Netzwerk-Konfiguration).</li>
+        <li><code>plasma</code> / <code>sddm</code>: KDE Plasma Desktop und Login-Manager.</li>
+        <li><code>dolphin</code>: Dateimanager (für KDE).</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Hinweis: Diese Seite wurde teilweise von einer KI (ChatGPT) erstellt. Die Befehle sind Beispiele — überprüfe und passe sie an deine Hardware und Anforderungen an.</p>
+    </footer>
+
+    <!-- Entwickler-Kommentare (nicht sichtbar im Browser):
+         - Achte darauf, keine realen Geräte (z. B. /dev/sda) ohne Sicherung zu überschreiben.
+         - Teste Befehle zuerst in einer sicheren Umgebung oder VM.
+    -->
   </body>
 </html>
